@@ -9,12 +9,12 @@ int main() {
     cin >> n;
 
     if (n < 0)
-        cout << "Error! You did not input a positive integer despite you being explicitly told to input one.";
+        cout << "Error! That is not a positive integer! Try again.";
     else {
         for(int i = 1; i <= n; ++i) {
             factorial *= i;
         }
-        cout << "Factorial of " << n << " = " << factorial;    
+        cout << "The factorial of " << n << " is " << factorial;    
     }
 
     return 0;
