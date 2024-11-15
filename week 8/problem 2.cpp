@@ -1,0 +1,68 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+// Define a structure to hold each record
+struct StudentData {
+    string NISN;
+    string Nama;
+    int ID;
+};
+
+// Comparator function for sorting based on ID
+bool compareByID(const StudentData &a, const StudentData &b) {
+    return a.ID < b.ID;
+}
+
+// Binary search function to find the entry by ID
+int binarySearch(const vector<StudentData> &data, int targetID) {
+    int low = 0;
+    int high = data.size() - 1;
+
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if (data[mid].ID == targetID) {
+            return mid;  // Found the target ID
+        } else if (data[mid].ID < targetID) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+
+    return -1;  // ID not found
+}
+
+int main() {
+    // Create a vector of StudentData
+    vector<StudentData> students = {
+        {"9960312699", "Handi Ramadhan", 90},
+        {"9963959682", "Rio Alfandra", 55},
+        {"9950310962", "Ronaldo Valentino Uneputty", 80}
+        {"9970272750", "Achmad Yaumil Fadjri R.", 60}
+        {"9970293945", "Alivia Rahma Pramesti", 70}
+        {"9952382180", "Ari Lutfianto", 65}
+        {"9965653989", "Arief Budiman", 60}
+    };
+
+    // Sort the vector by ID
+    sort(students.begin(), students.end(), compareByID);
+
+    // Perform binary search for ID = 3
+    int targetID = 3;
+    int index = binarySearch(students, targetID);
+
+    if (index != -1) {
+        cout << "Found student with ID " << targetID << ":\n";
+        cout << "NISN: " << students[index].NISN << endl;
+        cout << "Nama: " << students[index].Nama << endl;
+        cout << "ID: " << students[index].ID << endl;
+    } else {
+        cout << "ID " << targetID << " not found.\n";
+    }
+
+    return 0;
+}
