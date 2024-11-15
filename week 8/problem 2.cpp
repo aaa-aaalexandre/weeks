@@ -11,29 +11,29 @@ struct StudentData {
     int ID;
 };
 
-// Comparator function for sorting based on ID
-bool compareByID(const StudentData &a, const StudentData &b) {
-    return a.ID < b.ID;
+// Comparator function for sorting based on NISN
+bool compareByNISN(const StudentData &a, const StudentData &b) {
+    return a.NISN < b.NISN;
 }
 
-// Binary search function to find the entry by ID
-int binarySearch(const vector<StudentData> &data, int targetID) {
+// Binary search function to find the entry by NISN
+int binarySearch(const vector<StudentData> &data, const string &targetNISN) {
     int low = 0;
     int high = data.size() - 1;
 
     while (low <= high) {
         int mid = low + (high - low) / 2;
 
-        if (data[mid].ID == targetID) {
-            return mid;  // Found the target ID
-        } else if (data[mid].ID < targetID) {
+        if (data[mid].NISN == targetNISN) {
+            return mid;  // Found the target NISN
+        } else if (data[mid].NISN < targetNISN) {
             low = mid + 1;
         } else {
             high = mid - 1;
         }
     }
 
-    return -1;  // ID not found
+    return -1;  // NISN not found
 }
 
 int main() {
@@ -41,27 +41,27 @@ int main() {
     vector<StudentData> students = {
         {"9960312699", "Handi Ramadhan", 90},
         {"9963959682", "Rio Alfandra", 55},
-        {"9950310962", "Ronaldo Valentino Uneputty", 80}
-        {"9970272750", "Achmad Yaumil Fadjri R.", 60}
-        {"9970293945", "Alivia Rahma Pramesti", 70}
-        {"9952382180", "Ari Lutfianto", 65}
-        {"9965653989", "Arief Budiman", 60}
+        {"9950310962", "Ronaldo Valentino Uneputty", 80},
+        {"9970272750", "Achmad Yaumil Fadjri R.", 60},
+        {"9970293945", "Alivia Rahma Pramesti", 70},
+        {"9952382180", "Ari Lutfianto", 65},
+        {"9965653989", "Arief Budiman", 60},
     };
 
-    // Sort the vector by ID
-    sort(students.begin(), students.end(), compareByID);
+    // Sort the vector by NISN
+    sort(students.begin(), students.end(), compareByNISN);
 
-    // Perform binary search for ID = 3
-    int targetID = 3;
-    int index = binarySearch(students, targetID);
+    // Perform binary search for NISN
+    string targetNISN = "9950310962"; 
+    int index = binarySearch(students, targetNISN);
 
     if (index != -1) {
-        cout << "Found student with ID " << targetID << ":\n";
+        cout << "Found student with NISN " << targetNISN << ":\n";
         cout << "NISN: " << students[index].NISN << endl;
         cout << "Nama: " << students[index].Nama << endl;
-        cout << "ID: " << students[index].ID << endl;
+        cout << "Value: " << students[index].ID << endl;
     } else {
-        cout << "ID " << targetID << " not found.\n";
+        cout << "NISN " << targetNISN << " not found.\n";
     }
 
     return 0;
