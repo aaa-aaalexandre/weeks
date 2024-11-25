@@ -1,14 +1,15 @@
 using namespace std;
 #include <cmath>
-#include <iospace>
+#include <iostream>
 int main() {
-	int a;
-  long fact == 1;
-	cout << "Enter a number" << endl;
-	cin >> a;
-  for (i; fact <= a; i++)
-       int fact *= fact;
-  cout << "The factorial of the number you just submitted is" << a << "!" << endl;
+  int n;
+  long fact = 1.0;
+  cout << "Enter a number" << endl;
+  cin >> n;
+  for(int i = 1; i <= n; ++i) {
+       fact *= i;
+  }
+  cout << "The factorial of the number you just submitted is " << fact << "!" << endl;
 
   return 0;
 }
